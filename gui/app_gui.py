@@ -21,21 +21,30 @@ class AppGUI:
         self.users_db = []  # 模拟数据库来保存用户信息，待管理员审核
         self.items = []
         
-        file_path = './items.json'
+        self.file_path = './items.json'
 
         # 读取 JSON 文件并解析为 Python 对象
-        with open(file_path, 'r', encoding='utf-8') as file:
+        with open(self.file_path, 'r', encoding='utf-8') as file:
             items_data = json.load(file)
 
         # 循环遍历 JSON 中的每个条目，创建对应的 Item 实例
         for item_data in items_data:
+
+            # 创建物品类型对象
+            item_type_name = item_data["item_type"]["type_name"]
+            item_attributes = item_data["item_type"]["attributes"]
+
+            # 创建物品类型和物品对象
+            item_type = ItemType(item_type_name, item_attributes)
+
+            # 创建 Item 实例
             item = Item(
                 name=item_data['name'],
                 description=item_data['description'],
                 address=item_data['address'],
                 contact=item_data['contact'],
                 email=item_data['email'],
-                item_type=item_data['item_type']['type_name']  # 获取物品类型名称
+                item_type=item_type  # 直接传递字典
             )
             self.items.append(item)
 
@@ -74,6 +83,8 @@ class AppGUI:
         self.root.grid_rowconfigure(2, weight=1)
         self.root.grid_rowconfigure(3, weight=1)
         self.root.grid_rowconfigure(4, weight=1)
+        self.root.grid_rowconfigure(5, weight=1)
+        self.root.grid_rowconfigure(6, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
 
         # 主菜单中的按钮
@@ -148,7 +159,7 @@ class AppGUI:
             return
 
         # 提取物品名称列表
-        item_names = [item['name'] for item in self.items]
+        item_names = [item.name for item in self.items]
 
         # 创建下拉菜单
         item_to_delete = tk.StringVar()
@@ -173,7 +184,8 @@ class AppGUI:
     # 删除物品的逻辑
     def delete_item_from_list(self, item_name):
         # 根据物品名称删除物品，假设物品是字典，且通过名称找到对应物品并删除
-        self.items = [item for item in self.items if item['name'] != item_name]
+        self.items = [item for item in self.items if item.name != item_name]
+        self.save_to_json_delete()
 
     def view_item_list(self):
         # 创建一个新的窗口显示物品列表
@@ -420,9 +432,9 @@ class AppGUI:
         def cancel_changes():
             top.destroy()
 
-        # 返回按钮
-        self.btn_back_to_main = tk.Button(self.root, text="返回", font=("Arial", 14), bg="#f44336", fg="white", command=self.show_main_menu)
-        self.btn_back_to_main.grid(row=10, column=0, columnspan=2, padx=10, pady=10, ipadx=10, ipady=10)
+        # # 返回按钮
+        # self.btn_back_to_main = tk.Button(self.root, text="返回", font=("Arial", 14), bg="#f44336", fg="white", command=self.show_main_menu)
+        # self.btn_back_to_main.grid(row=10, column=0, columnspan=2, padx=10, pady=10, ipadx=10, ipady=10)
 
         # 删除属性按钮
         def delete_attribute(attribute):
@@ -443,32 +455,51 @@ class AppGUI:
 
     def register(self):
         # 显示注册界面
-        self.clear_widgets()
+        self.clear_window()
+
+        # 设置grid布局的行列数量
+        self.root.grid_rowconfigure(0, weight=1)
+        self.root.grid_rowconfigure(1, weight=1)
+        self.root.grid_rowconfigure(2, weight=1)
+        self.root.grid_rowconfigure(3, weight=1)
+        self.root.grid_rowconfigure(4, weight=1)
+        self.root.grid_rowconfigure(5, weight=1)
+        self.root.grid_columnconfigure(4, weight=1)
+
+        # 设置控件的边距
+        padx, pady = 10, 5
+
+        # 用户名输入框
         self.label_username = tk.Label(self.root, text="用户名")
-        self.label_username.grid(row=0, column=0)
+        self.label_username.grid(row=0, column=2, padx=padx, pady=pady, sticky="w")
         self.entry_username = tk.Entry(self.root)
-        self.entry_username.grid(row=0, column=1)
+        self.entry_username.grid(row=0, column=3, padx=padx, pady=pady, sticky="w")
 
+        # 密码输入框
         self.label_password = tk.Label(self.root, text="密码")
-        self.label_password.grid(row=1, column=0)
+        self.label_password.grid(row=1, column=2, padx=padx, pady=pady, sticky="w")
         self.entry_password = tk.Entry(self.root, show='*')
-        self.entry_password.grid(row=1, column=1)
+        self.entry_password.grid(row=1, column=3, padx=padx, pady=pady, sticky="w")
 
+        # 地址输入框
         self.label_address = tk.Label(self.root, text="地址")
-        self.label_address.grid(row=2, column=0)
+        self.label_address.grid(row=2, column=2, padx=padx, pady=pady, sticky="w")
         self.entry_address = tk.Entry(self.root)
-        self.entry_address.grid(row=2, column=1)
+        self.entry_address.grid(row=2, column=3, padx=padx, pady=pady, sticky="w")
 
+        # 联系方式输入框
         self.label_contact = tk.Label(self.root, text="联系方式")
-        self.label_contact.grid(row=3, column=0)
+        self.label_contact.grid(row=3, column=2, padx=padx, pady=pady, sticky="w")
         self.entry_contact = tk.Entry(self.root)
-        self.entry_contact.grid(row=3, column=1)
+        self.entry_contact.grid(row=3, column=3, padx=padx, pady=pady, sticky="w")
 
+        # 提交注册按钮
         self.btn_submit_registration = tk.Button(self.root, text="提交注册", command=self.submit_registration)
-        self.btn_submit_registration.grid(row=4, column=0, columnspan=2)
+        self.btn_submit_registration.grid(row=4, column=2, columnspan=2, pady=(10, 5))
 
+        # 返回登录按钮
         self.btn_back_to_login = tk.Button(self.root, text="返回登录", command=self.show_login_screen)
-        self.btn_back_to_login.grid(row=5, column=0, columnspan=2)
+        self.btn_back_to_login.grid(row=5, column=2, columnspan=2, pady=5)
 
     def submit_registration(self):
         username = self.entry_username.get()
@@ -497,6 +528,8 @@ class AppGUI:
         if self.user_type == "普通用户":
             self.add_item_button.grid_forget()
             self.search_item_button.grid_forget()
+            self.delete_item_button.grid_forget()
+            self.view_item_list_button.grid_forget()
             self.logout_button.grid_forget()
         elif self.user_type == "管理员":
             self.approve_admin_button.grid_forget()
@@ -504,6 +537,8 @@ class AppGUI:
             self.edit_item_type_button.grid_forget()
             self.add_item_button.grid_forget()
             self.search_item_button.grid_forget()
+            self.delete_item_button.grid_forget()
+            self.view_item_list_button.grid_forget()
             self.logout_button.grid_forget()
 
         # 设置背景颜色和字体大小
@@ -663,6 +698,22 @@ class AppGUI:
                 # 如果文件不存在，直接创建一个新的 JSON 文件并写入物品数据
                 with open("items.json", "w", encoding="utf-8") as f:
                     json.dump(items_data, f, ensure_ascii=False, indent=4)
+
+            messagebox.showinfo("保存成功", "物品列表已成功保存到JSON文件")
+            
+        except Exception as e:
+            messagebox.showerror("保存失败", f"保存到JSON文件失败: {str(e)}")
+
+    def save_to_json_delete(self):
+        """将物品列表保存到JSON文件"""
+        try:
+            # 将物品列表转换为字典列表
+            items_data = [item.to_dict() for item in self.items]
+
+
+            # 如果文件不存在，直接创建一个新的 JSON 文件并写入物品数据
+            with open("items.json", "w", encoding="utf-8") as f:
+                json.dump(items_data, f, ensure_ascii=False, indent=4)
 
             messagebox.showinfo("保存成功", "物品列表已成功保存到JSON文件")
             
