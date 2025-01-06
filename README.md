@@ -106,7 +106,7 @@
   2. 用户/管理员确认删除
   3. 系统将该物品从数据库中删除
   4. 系统反馈操作结果
-![删除物品](https://github.com/user-attachments/assets/fa88a332-17bc-48b0-a8a0-5109470bf1c7)
+![删除物品](https://github.com/user-attachments/assets/fbf6919c-8229-47f4-a974-59352eee545e)
 
 ### **UC04：查看物品详情**
 - **主要参与者**：用户/管理员
