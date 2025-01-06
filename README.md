@@ -85,7 +85,7 @@
   1. 用户/管理员输入类别和关键词
   2. 系统从数据库比对类别和关键词
   3. 系统将匹配到的物品显示在界面中
-![搜索物品](https://github.com/user-attachments/assets/03b16999-4788-4f43-8634-3ecddabbef23)
+![搜索物品](https://github.com/user-attachments/assets/aa79e0eb-75ee-4a1b-a031-2f19bebf9106)
 
 ### **UC02：添加物品**
 - **主要参与者**：用户/管理员
@@ -96,7 +96,7 @@
   3. 用户/管理员填写物品信息并提交
   4. 系统将物品信息保存到数据库
   5. 系统反馈操作结果
-![添加物品](https://github.com/user-attachments/assets/c6415045-4c04-4cdf-b1b3-d8eba90e09a7)
+![添加物品](https://github.com/user-attachments/assets/26ee49b1-cb91-4a50-b7b0-964cedd29813)
 
 ### **UC03：删除物品**
 - **主要参与者**：用户/管理员
@@ -106,7 +106,7 @@
   2. 用户/管理员确认删除
   3. 系统将该物品从数据库中删除
   4. 系统反馈操作结果
-![删除物品](https://github.com/user-attachments/assets/b78db51e-0097-4e20-9673-08f8d6932d94)
+![删除物品](https://github.com/user-attachments/assets/fa88a332-17bc-48b0-a8a0-5109470bf1c7)
 
 ### **UC04：查看物品详情**
 - **主要参与者**：用户/管理员
@@ -115,7 +115,7 @@
   1. 用户/管理员点击“查看物品详情”按钮
   2. 系统加载所有物品的详细信息
   3. 系统显示所有物品的详细信息页面
-![查看物品详情](https://github.com/user-attachments/assets/a5665304-672b-40e1-b094-56a0fce12692)
+![查看物品详情](https://github.com/user-attachments/assets/77ad2bfa-aa70-44db-a871-e9299d97ac8d)
 
 ### **UC05：登录系统**
 - **主要参与者**：用户/管理员
@@ -124,7 +124,7 @@
   1. 用户/管理员输入用户名和密码。
   2. 系统验证用户名和密码
   3. 系统返回登录结果（成功或失败）
-![登录系统](https://github.com/user-attachments/assets/504e63e3-4801-464a-950b-01b9281a07c8)
+![登录系统](https://github.com/user-attachments/assets/abfbf50d-0830-465e-a271-d59f6f71bd89)
 
 ### **UC06：修改物品类别**
 - **主要参与者**：管理员
@@ -135,7 +135,7 @@
   3. 管理员添加或删除类别属性
   4. 系统更新物品类别信息
   5. 系统反馈操作结果
-![修改物品类别](https://github.com/user-attachments/assets/1c75ec15-32e0-4dd4-a9c8-c2090663961d)
+![修改物品类别](https://github.com/user-attachments/assets/c4325494-032d-4ead-a151-bd5d61924940)
 
 ### **UC07：添加物品类别**
 - **主要参与者**：管理员
@@ -146,7 +146,7 @@
   3. 管理员填写新类别名称及新属性并提交
   4. 系统保存新类别到数据库
   5. 系统反馈操作结果
-![添加物品类别](https://github.com/user-attachments/assets/37cdf046-9bb2-4f7c-98d4-b8f160fc92d0)
+![添加物品类别](https://github.com/user-attachments/assets/9be846e9-fa4b-4388-9408-b522732461a4)
 
 ### **UC08：注册新账号**
 - **主要参与者**：用户
@@ -155,7 +155,7 @@
   1. 用户点击注册按钮
   2. 系统显示注册表单
   3. 用户填写信息并提交注册申请
-![注册新账号](https://github.com/user-attachments/assets/35b00839-bcd8-494f-b916-2bbc336fcce6)
+![注册新账号](https://github.com/user-attachments/assets/3f1998b5-23ba-49f0-b7cb-7ca7f6502d9f)
 
 ### **UC09：审批普通用户注册**
 - **主要参与者**：管理员
@@ -165,7 +165,7 @@
   2. 管理员批准或拒绝用户申请
   3. 系统根据管理员的决定更新用户状态
   4. 系统反馈审批结果
-![审批普通用户注册](https://github.com/user-attachments/assets/73bcc6fb-8f0f-497e-93bf-f9fd221d29d3)
+![审批普通用户注册](https://github.com/user-attachments/assets/ceaa303d-1ef3-45f9-8fc8-f08db296f932)
 
 ---
 
